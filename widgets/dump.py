@@ -7,9 +7,9 @@ class Controls(Frame):
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
         self.load = Button(self, text="Load Dump", command=self.master.load)
-        self.load.grid(row=0, column=0, sticky="nsew")
+        self.load.grid(row=0, column=0, sticky="w")
         self.save = Button(self, text="Save Dump", command=self.master.save)
-        self.save.grid(row=0, column=1, sticky="nsew")
+        self.save.grid(row=0, column=1, sticky="w")
 
 
 class Dump(Frame):
@@ -19,7 +19,7 @@ class Dump(Frame):
         self.grid_columnconfigure(0, weight=1)
         self.buttons = Controls(container=self)
         self.buttons.grid(row=0, column=0, sticky="nsew")
-        self.hexdump = Text(self)
+        self.hexdump = Text(self, height=16)
         self.hexdump.grid(row=1, column=0, sticky="nsew")
         self.model = model.Dump()
 

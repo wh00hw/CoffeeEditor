@@ -6,8 +6,9 @@ import sys
 class Dump:
     FILETYPES = (('Bin files', '*.bin'),)
     #(nibbles + spaces) * rows + (offset + spaces)
-    START_x44 = (32 + 16) * 4 + (8 + 4)
-    START_x54 = START_x44 + 32 + 14
+    START_x44 = 204 #(32 + 16) * 4 + (8 + 4)
+    START_x54 = 252 #START_x44 + 32 + 14
+    OFFSET = 11
 
     def __init__(self) -> None:
         self.dump = None
@@ -18,8 +19,10 @@ class Dump:
             self.dump = dump(f.read())
     
     def edit(self, x44, x54):
-        self.dump = self.dump[:self.START_x44] + x44 + self.dump[self.START_x44+len(x44)+1:]
-        self.dump = self.dump[:self.START_x54] + x54 + self.dump[self.START_x54+len(x54)+1:]
+        old_x44 = self.dump[self.START_x44:self.START_x44+self.OFFSET]
+        self.dump = self.dump.replace(old_x44, x44)
+        old_x54 = self.dump[self.START_x54:self.START_x54+self.OFFSET]
+        self.dump = self.dump.replace(old_x54, x54)
 
     def print(self):
         tmp = sys.stdout
