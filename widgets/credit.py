@@ -8,11 +8,11 @@ class Credit(Frame):
         self.grid_rowconfigure(0, weight=2)
         self.grid_columnconfigure(2, weight=1)
         self.label=Label(self, text='Credit:')
-        self.label.grid(row=0, column=0, sticky="nsew")
+        self.label.grid(row=0, column=0, sticky="w", padx=5, pady=1)
         self.input = Entry(self, name="credit")
-        self.input.grid(row=0, column=1, sticky="nsew")
+        self.input.grid(row=0, column=1, sticky="w", padx=5, pady=1)
         self.button = Button(self, text="Calculate", command=self.calculate)
-        self.button.grid(row=0, column=2, sticky="nsew")
+        self.button.grid(row=0, column=2, sticky="w", padx=5, pady=1)
         self.model = model.Credit()
     
     def update(self, value):

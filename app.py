@@ -13,13 +13,13 @@ class App(Tk):
     container.grid_columnconfigure(0, weight=1)
     #Widgets
     self.credit = Credit(container=self)
-    self.credit.grid(row=0, column=0, sticky="w", padx=5, pady=5)
+    self.credit.grid(row=0, column=0, sticky="w", padx=5, pady=1)
     self.x44 = Register(container=self, name="x44")
-    self.x44.grid(row=1, column=0, sticky="w", padx=5, pady=5)
+    self.x44.grid(row=1, column=0, sticky="w", padx=5, pady=1)
     self.x54 = Register(container=self, name="x54")
-    self.x54.grid(row=2, column=0, sticky="w", padx=5, pady=5)
+    self.x54.grid(row=2, column=0, sticky="w", padx=5, pady=1)
     self.dump = Dump(container=self)
-    self.dump.grid(row=3, column=0, sticky="w", padx=5, pady=5)
+    self.dump.grid(row=3, column=0, sticky="w", padx=5, pady=1)
 
 app = App()
 app.mainloop()

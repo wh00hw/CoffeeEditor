@@ -9,8 +9,8 @@ class Register(Frame):
         self.grid_columnconfigure(1, weight=1)
         self.label=Label(self, text=f"{name}:")
         self.output=Entry(self, name=name)
-        self.label.grid(row=0, column=0, sticky="nsew")
-        self.output.grid(row=0, column=1, sticky="nsew")
+        self.label.grid(row=0, column=0, sticky="w", padx=5, pady=1)
+        self.output.grid(row=0, column=1, sticky="w", padx=5, pady=1)
         self.model = model.Register(label=name)
     
     def update(self, value):
