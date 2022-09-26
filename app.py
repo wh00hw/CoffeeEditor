@@ -1,5 +1,4 @@
 from tkinter import Tk, Frame
-from unicodedata import name
 from widgets.credit import Credit
 from widgets.dump import Dump
 
@@ -16,5 +15,7 @@ class App(Tk):
     self.dump = Dump(container=self)
     self.dump.grid(row=1, column=0, sticky="w", padx=5, pady=1)
 
+
 app = App()
 app.mainloop()
+  

@@ -1,4 +1,4 @@
-from tkinter import Frame, Button, Text, filedialog, END
+from tkinter import Frame, Button, Label, Text, filedialog, END, messagebox
 from models import dump as model
 
 class Controls(Frame):
@@ -15,12 +15,14 @@ class Controls(Frame):
 class Dump(Frame):
     def __init__(self, container):
         super().__init__(container)
-        self.grid_rowconfigure(1, weight=1)
+        self.grid_rowconfigure(2, weight=1)
         self.grid_columnconfigure(0, weight=1)
         self.buttons = Controls(container=self)
-        self.buttons.grid(row=0, column=0, sticky="nsew")
+        self.buttons.grid(row=0, column=0, sticky="w")
+        self.label = Label(self)
+        self.label.grid(row=1, column=0, sticky="w")
         self.hexdump = Text(self, height=16)
-        self.hexdump.grid(row=1, column=0, sticky="nsew")
+        self.hexdump.grid(row=2, column=0, sticky="w")
         self.model = model.Dump()
 
     def load(self):
@@ -29,6 +31,7 @@ class Dump(Frame):
             initialdir='../',
             filetypes=self.model.FILETYPES
         )[0]
+        self.label.config(text=f"File: {self.model.filename}")
         self.model.read()
         value = self.model.parse()
         self.master.credit.update(value)
@@ -45,6 +48,7 @@ class Dump(Frame):
             mode='wb')
         f.write(self.model.to_bytes())
         f.close()
+        messagebox.showinfo(title="Save", message="Success!!")
     
     def edit(self, x44, x54):
         self.model.edit(x44, x54)
