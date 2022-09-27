@@ -1,6 +1,6 @@
-from tkinter import Frame, Button, Label, Text, filedialog, END, messagebox
+from tkinter import Frame, Button, Label, Text, END, messagebox
 from models import dump as model
-
+from tkfilebrowser import askopenfilename, asksaveasfilename
 class Controls(Frame):
     def __init__(self, container):
         super().__init__(container)
@@ -26,11 +26,10 @@ class Dump(Frame):
         self.model = model.Dump()
 
     def load(self):
-        self.model.filename= filedialog.askopenfilenames(
+        self.model.filename= askopenfilename(
             title='Open Dump',
             initialdir='../',
-            filetypes=self.model.FILETYPES
-        )[0]
+            filetypes=self.model.FILETYPES)
         self.label.config(text=f"File: {self.model.filename}")
         self.model.read()
         value = self.model.parse()
@@ -41,13 +40,14 @@ class Dump(Frame):
         filename = self.model.filename.split(".")
         filename[-2] = f"{filename[-2]}_edit."
         filename = "".join(filename)
-        f = filedialog.asksaveasfile(
+        file_path = asksaveasfilename(
             title='Save Dump',
+            initialdir='../',
             initialfile=filename,
-            filetypes=self.model.FILETYPES,
-            mode='wb')
-        f.write(self.model.to_bytes())
-        f.close()
+            filetypes=self.model.FILETYPES)
+        with open(file_path, "wb") as f:
+            f.write(self.model.to_bytes())
+            f.close()
         messagebox.showinfo(title="Save", message="Success!!")
     
     def edit(self, x44, x54):
