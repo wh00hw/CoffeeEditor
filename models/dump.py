@@ -1,5 +1,5 @@
 from hexdump import dump, hexdump, dehex
-from utils.credit_calc import read_credit
+from tools.credit_calc import read_credit
 from io import StringIO
 import sys
 
