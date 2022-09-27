@@ -1,6 +1,6 @@
 from tkinter import Frame, Label, Entry, Button, END
 from models import credit as model
-from utils.credit_calc import calc_0x44, calc_0x54
+from tools.credit_calc import calc_0x44, calc_0x54
 
 class Credit(Frame):
     def __init__(self, container) -> None:
