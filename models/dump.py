@@ -37,5 +37,7 @@ class Dump:
         x44 = x44.replace(" ", "")
         return str(read_credit(x44))
     
-    def to_bytes(self):
-        return dehex(self.dump)
+    def save(self, file_path):
+        with open(file_path, "wb") as f:
+            f.write(dehex(self.dump))
+            f.close()

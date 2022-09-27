@@ -45,9 +45,7 @@ class Dump(Frame):
             initialdir='../',
             initialfile=filename,
             filetypes=self.model.FILETYPES)
-        with open(file_path, "wb") as f:
-            f.write(self.model.to_bytes())
-            f.close()
+        self.model.save(file_path)
         messagebox.showinfo(title="Save", message="Success!!")
     
     def edit(self, x44, x54):
